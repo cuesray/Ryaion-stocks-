@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryaion | Future of Investing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d45b25ce8f.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --neon-blue: #3b82f6;
+            --neon-purple: #8b5cf6;
+            --market-green: #00d09c;
+            --market-red: #eb5b3c;
+        }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #03040b; 
+            color: #f9fafb;
+            letter-spacing: -0.01em;
+        }
+        h1, h2, h3, .font-heading { 
+            font-family: 'Bricolage Grotesque', sans-serif; 
+        }
+        .glass-card { 
+            background: rgba(13, 17, 34, 0.6); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .gradient-text { 
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .neon-border-blue:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        .tab-active { color: white; position: relative; }
+        .tab-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--neon-blue); border-radius: 2px; }
+        
+        @keyframes pulse-soft {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
