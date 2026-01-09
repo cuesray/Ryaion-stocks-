@@ -43,19 +43,17 @@ export interface Stock {
 
 export interface Transaction {
   id: string;
-  stockId: string;
   symbol: string;
   type: 'BUY' | 'SELL';
   quantity: number;
   price: number;
-  date: string;
+  time: string;
 }
 
-export interface Holding {
-  stockId: string;
+export interface PortfolioItem {
   symbol: string;
   quantity: number;
-  avgBuyPrice: number;
+  avgPrice: number;
 }
 
 export interface AIAnalysis {
