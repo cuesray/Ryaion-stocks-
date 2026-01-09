@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { Stock, AIAnalysis } from "../types";
+import { Stock, AIAnalysis, NewsItem } from "../types";
 
 // Always use the process.env.API_KEY directly as a named parameter
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -45,4 +45,29 @@ export const compareStocks = async (stocks: Stock[]): Promise<string> => {
 
   // Accessing response.text as a property, not a method
   return response.text || "Comparison unavailable at the moment.";
+};
+
+export const getMarketNews = async (): Promise<NewsItem> => {
+  // Using gemini-3-flash-preview for fast real-time search queries
+  const response = await ai.models.generateContent({
+    model: 'gemini-3-flash-preview',
+    contents: "Summarize the 5 most important news events happening today in the Indian stock market. Focus on Nifty, Sensex, and major corporate moves. Use a tone suitable for Gen Z investors. Format each news item with a clear headline and a 2-sentence breakdown.",
+    config: {
+      tools: [{ googleSearch: {} }],
+    },
+  });
+
+  const text = response.text || "Market neural pathways currently blocked. Re-initializing...";
+  
+  // Extract URLs from groundingChunks
+  const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+  const sources = groundingChunks
+    .map((chunk: any) => chunk.web)
+    .filter(Boolean)
+    .map((web: any) => ({
+      uri: web.uri,
+      title: web.title || 'Source',
+    }));
+
+  return { text, sources };
 };

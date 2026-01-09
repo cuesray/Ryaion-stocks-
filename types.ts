@@ -1,4 +1,3 @@
-
 export interface Trendline {
   x1: string;
   y1: number;
@@ -10,6 +9,17 @@ export interface SavedTrendline extends Trendline {
   id: string;
   symbol: string;
   label: string;
+}
+
+export interface PriceAlert {
+  id: string;
+  stockId: string;
+  symbol: string;
+  targetPrice: number;
+  condition: 'ABOVE' | 'BELOW';
+  isActive: boolean;
+  isTriggered: boolean;
+  createdAt: string;
 }
 
 export interface Stock {
@@ -55,6 +65,16 @@ export interface AIAnalysis {
   cons: string[];
   riskLevel: 'Low' | 'Medium' | 'High';
   targetPrice: string;
+}
+
+export interface NewsSource {
+  uri: string;
+  title: string;
+}
+
+export interface NewsItem {
+  text: string;
+  sources: NewsSource[];
 }
 
 export interface ComparisonResult {

@@ -10,44 +10,115 @@
     <script src="https://kit.fontawesome.com/d45b25ce8f.js" crossorigin="anonymous"></script>
     <style>
         :root {
-            --neon-blue: #3b82f6;
-            --neon-purple: #8b5cf6;
-            --market-green: #00d09c;
-            --market-red: #eb5b3c;
+            --sangria: #6E1916;
+            --sangria-bright: #A42420;
+            --sangria-deep: #3D0A08;
+            --market-green: #00FFC2;
+            --market-red: #FF4D4D;
+            --gold-accent: #E2B808;
+            --deep-bg: #0D0202;
         }
+        
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: #03040b; 
+            background-color: var(--deep-bg); 
             color: #f9fafb;
             letter-spacing: -0.01em;
+            overflow-x: hidden;
         }
+
+        /* Sophisticated Background Mesh */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 0% 0%, rgba(110, 25, 22, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(61, 10, 8, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(164, 36, 32, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
         h1, h2, h3, .font-heading { 
             font-family: 'Bricolage Grotesque', sans-serif; 
         }
+
         .glass-card { 
-            background: rgba(13, 17, 34, 0.6); 
-            backdrop-filter: blur(20px); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(30, 5, 5, 0.4); 
+            backdrop-filter: blur(24px); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .glass-card:hover {
+            border-color: rgba(164, 36, 32, 0.4);
+            background: rgba(45, 8, 8, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px -12px rgba(110, 25, 22, 0.4);
+        }
+
         .gradient-text { 
-            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6); 
+            background: linear-gradient(135deg, #FF7E7E 0%, #6E1916 50%, #A42420 100%); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
         }
-        .neon-border-blue:hover { border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        .tab-active { color: white; position: relative; }
-        .tab-active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: var(--neon-blue); border-radius: 2px; }
-        
-        @keyframes pulse-soft {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+
+        .tab-active { 
+            color: white !important; 
+            position: relative; 
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
         }
-        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
+
+        .tab-active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -6px; 
+            left: 20%; 
+            right: 20%; 
+            height: 3px; 
+            background: linear-gradient(90deg, transparent, var(--sangria-bright), transparent); 
+            border-radius: 10px;
+            box-shadow: 0 0 15px var(--sangria);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { 
+            background: var(--sangria); 
+            border-radius: 10px; 
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
+
+        @keyframes pulse-soft {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.8; transform: scale(1); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 4s infinite ease-in-out; }
+
+        .btn-sangria {
+            background: linear-gradient(135deg, var(--sangria), var(--sangria-bright));
+            color: white;
+            box-shadow: 0 4px 15px rgba(110, 25, 22, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-sangria:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(164, 36, 32, 0.6);
+            filter: brightness(1.1);
+        }
+
+        /* Solving Recharts initial zero size issues */
+        .recharts-responsive-container {
+            min-height: 0;
+            min-width: 0;
+        }
     </style>
 <script type="importmap">
 {
@@ -62,7 +133,6 @@
 </script>
 </head>
 <body>
-    <script type="module" src="/index.tsx"></script>
     <div id="root"></div>
 </body>
 </html>
